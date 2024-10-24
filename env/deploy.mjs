@@ -1,6 +1,6 @@
 import { deploy } from '@frylo/pftp';
 
-import { creds } from './creds.mjs';
+import { fryloCreds, rootCreds } from './creds.mjs';
 
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
@@ -9,28 +9,33 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 async function main() {
-	console.log('(1/3) Uploading home folder');
+	console.log('\n(1/3) Uploading home folder\n');
 
 	await deploy({
-		...creds,
+		...fryloCreds,
 
 		localFolder: path.join(__dirname, "./../src/home"),
-		remoteFolder: `/home/${creds.username}/vpn`,
+		remoteFolder: `/home/${fryloCreds.username}/vpn`,
+
+		excludeRegExp: [
+			...fryloCreds.excludeRegExp,
+			/^pptp\-install\//,
+		],
 	});
 
-	console.log('(2/3) Uploading vpn.frylo.org');
+	console.log('\n\n(2/3) Uploading vpn.frylo.org\n');
 
 	await deploy({
-		...creds,
+		...rootCreds,
 
 		localFolder: path.join(__dirname, './../src/vpn.frylo.org'),
 		remoteFolder: `/var/www/vpn.frylo.org`,
 	});
 
-	console.log('(3/3) Uploading etc folders');
+	console.log('\n\n(3/3) Uploading etc folders\n');
 
 	await deploy({
-		...creds,
+		...rootCreds,
 
 		localFolder: path.join(__dirname, './../src/etc'),
 		remoteFolder: `/etc`,
@@ -42,4 +47,4 @@ async function main() {
 	});
 }
 
-main().finally(process.exit);
+main().catch(console.error).finally(process.exit);

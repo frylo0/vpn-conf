@@ -4,7 +4,7 @@
 source ./creds.sh
 
 
-# Creating new user
+echo -e "\n\n1) Creating user $username"
 if id "$username" &>/dev/null; then
     echo "User $username exists."
 else
@@ -17,7 +17,7 @@ else
 fi
 
 
-# Update frylo .bashrc
+echo -e "\n\n2) Update .bashrc"
 if grep -Fxq 'source ~/vpn/api.sh' /home/$username/.bashrc; then
     echo "The line 'source ~/vpn/api.sh' exists in .bashrc."
 else
@@ -26,7 +26,7 @@ else
 fi
 
 
-# Install Docker
+echo -e "\n\n3) Install Docker"
 if ! command -v docker &> /dev/null; then
     echo "Docker is not installed. Installing Docker..."
 
@@ -39,7 +39,7 @@ else
 fi
 
 
-# Install deps
+echo -e "\n\n4) Install deps"
 if ! command -v nginx &> /dev/null; then
     echo "Deps are not installed. Installing deps..."
 
@@ -50,15 +50,21 @@ if ! command -v nginx &> /dev/null; then
 	sudo nginx -t
 	sudo systemctl reload nginx
 else
-    echo "Nginx is already installed."
+    echo "Deps is already installed."
 fi
 
 
-# Install PPTP
+echo -e "\n\n5) Install PPTP"
 if ! command -v pptpd &> /dev/null; then
     echo "PPTP is not installed. Installing PPTP..."
+	echo ""
 
 	cat /home/$username/vpn/tutorials/pptp-config-script-tutor.md
+
+	echo ""
+
+	git clone --depth=1 https://github.com/bedefaced/vpn-install.git /home/$username/vpn/pptp-install
+	sudo chmod u+rwx -R /home/$username/vpn/pptp-install
 	sudo /home/$username/vpn/pptp-install/pptp/install.sh
 else
     echo "PPTP is already installed."
