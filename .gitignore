@@ -5,3 +5,4 @@ node_modules/
 env/creds.mjs
 src/etc/ppp/chap-secrets
 src/vpn.frylo.org/creds.php
+src/home/scripts/creds.sh

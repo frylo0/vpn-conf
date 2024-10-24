@@ -8,7 +8,7 @@ https://firstbyte.ru/manuals/ustanovka-i-nastroyka-pptp-vpn-na-vds-ot-firstbyte/
 
 apt install git
 git clone --depth=1 https://github.com/bedefaced/vpn-install.git pptp-install
-sudo vpn-install/pptp/install.sh
+sudo pptp-install/pptp/install.sh
 
 ### Questions script brings while installation
 
