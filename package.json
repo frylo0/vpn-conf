@@ -1,0 +1,15 @@
+{
+	"name": "vpn-conf",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"deploy": "node ./env/deploy.mjs"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@frylo/pftp": "^1.5.0"
+	}
+}

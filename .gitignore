@@ -1,0 +1,7 @@
+# Packages
+node_modules/
+
+# Creds
+env/creds.mjs
+src/etc/ppp/chap-secrets
+src/vpn.frylo.org/creds.php
