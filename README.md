@@ -31,8 +31,8 @@ Git setup ignores creds files to increase security of VPN. No launch new instanc
 
 Creds files:
 
-- ./env/creds.mjs - Stores SSH creds for deployment script
-- ./src/etc/ppp/chap-secrets - Stores creds for PPTP VPN connections
-- ./src/home/scripts/creds.sh - Stores creds for creation of Ubuntu sudo user
-- ./src/vpn.frylo.org/creds.php - Stores creds for HTTP Auth for VPN control panel website
+- `./env/creds.mjs` - Stores SSH creds for deployment script
+- `./src/etc/ppp/chap-secrets` - Stores creds for PPTP VPN connections
+- `./src/home/scripts/creds.sh` - Stores creds for creation of Ubuntu sudo user
+- `./src/vpn.frylo.org/creds.php` - Stores creds for HTTP Auth for VPN control panel website
 
